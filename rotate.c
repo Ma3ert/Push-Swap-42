@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 13:30:03 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/02/10 16:03:47 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/02/21 18:24:45 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	rotate_element(t_list **stack)
 	t_list	*tmp1;
 	t_list	*tmp2;
 
-	tmp1 = malloc(sizeof(t_list));
 	tmp1 = *stack;
 	*stack = tmp1->next;
 	tmp2 = tmp1->next;

@@ -6,9 +6,11 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 11:23:24 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/02/07 11:23:49 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/02/16 13:40:31 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
 
 static int	check(char str)
 {
@@ -45,4 +47,24 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (sign * nb);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	size_t			i;
+	unsigned char	*str1;
+	unsigned char	*str2;
+
+	i = 0;
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	while (str1[i] || str2[i])
+	{
+		if (str1[i] != str2[i])
+		{
+			return (str1[i] - str2[i]);
+		}
+		i++;
+	}
+	return (0);
 }
