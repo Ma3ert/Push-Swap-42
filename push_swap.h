@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 13:26:53 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/02/21 18:38:14 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/02/21 19:15:02 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,11 @@ int		ft_max_value(t_list *stack);
 int		ft_min_value(t_list *stack);
 int		element_count(t_list *stack);
 
+void 	re_index(t_list *stack);
+double		index_finder(t_list *stack, int value);
 
+void	rotate_decision(t_list **stack, int value, int dec);
+void	top_element(t_list **stack, double n, int value);
 void	sort_element(t_list **stack_a, t_list **stack_b, int n);
 
 #endif

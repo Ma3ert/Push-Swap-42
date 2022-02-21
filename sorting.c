@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:12:06 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/02/21 18:45:44 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/02/21 19:15:57 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,6 @@ int	element_count(t_list *stack)
 		n++;
 	}
 	return (n);
-}
-
-int	index_finder(t_list *stack, int value)
-{
-	while (stack->content != value && stack)
-		stack = stack->next;
-	return (stack->index);
 }
 
 void	rotate_decision(t_list **stack, int value, int dec)
@@ -52,28 +45,14 @@ void	rotate_decision(t_list **stack, int value, int dec)
 	}
 }
 
-void re_index(t_list *stack)
-{
-	int	i;
 
-	i = 0;
-	while (stack)
-	{
-		stack->index = i++;
-		stack = stack->next;
-	}
-}
-
-void	top_first_element(t_list **stack, int n, int min)
+void	top_element(t_list **stack, double n, int value)
 {
-	if (n % 2 == 0)
-		n = (n / 2);
+	n = (n / 2.0);
+	if (index_finder(*stack, value) > n)
+		rotate_decision(stack, value, 1);
 	else
-		n = (n / 2) + 1;
-	if (index_finder(*stack, min) > n)
-		rotate_decision(stack, min, 1);
-	else
-		rotate_decision(stack, min, 2);
+		rotate_decision(stack, value, 2);
 	re_index(*stack);
 }
 
@@ -86,6 +65,5 @@ void	sort_element(t_list **stack_a, t_list **stack_b, int n)
 	stack_b = NULL;
 	min = ft_min_value(*stack_a);
 	if ((*stack_a)->content != min)
-		top_first_element(stack_a, n, min);
-	// printf("this the n: %d\n", n);
+		top_element(stack_a, n, min);
 }
