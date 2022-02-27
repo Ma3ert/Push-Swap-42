@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:45:13 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/02/21 17:32:41 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/02/25 15:25:34 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ int	ft_min_value(t_list *stack)
 	int		min;
 	t_list 	*tmp;
 
-	tmp = malloc(sizeof(t_list));
 	tmp = stack;
 	min = tmp->content;
-	while (tmp->next != NULL)
+	while (tmp != NULL)
 	{
 		if (tmp->content < min)
 			min = tmp->content;
@@ -34,10 +33,9 @@ int	ft_max_value(t_list *stack)
 	int		max;
 	t_list 	*tmp;
 
-	tmp = malloc(sizeof(t_list));
 	tmp = stack;
 	max = tmp->content;
-	while (tmp->next != NULL)
+	while (tmp != NULL)
 	{
 		if (tmp->content > max)
 			max = tmp->content;

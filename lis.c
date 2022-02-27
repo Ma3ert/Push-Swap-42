@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 11:08:27 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/02/23 12:17:18 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/02/24 12:25:40 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_markup(t_list *head)
 	int		max_l;
 	t_list	*tmp;
 
-	n = 0;
+	n = 1;
 	tmp = head;
 	max_l = max_len(tmp);
 	while (tmp->len != max_l && tmp)

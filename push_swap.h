@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 13:26:53 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/02/23 12:08:50 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/02/27 15:59:40 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,18 @@ typedef struct d_pivot
 	int	value;
 }				t_pivot;
 
+typedef struct d_info
+{
+	int	a_len;
+	int	b_len;
+	int	a_middle;
+	int	b_middle;
+}				t_info;
+
 typedef struct d_list
 {
+	int				distance;
+	int				n_index;
 	int				push;
 	int				p_index;
 	int				index;
@@ -61,5 +71,6 @@ void	rotate_decision(t_list **stack, int value, int dec);
 void	top_element(t_list **stack, double n, int value);
 void	sort_element(t_list **stack_a, t_list **stack_b, int n);
 
+void	print_stack(t_list *stack);
 
 #endif
