@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:45:13 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/02/25 15:25:34 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/02/28 14:41:12 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,24 @@ int	ft_max_value(t_list *stack)
 		tmp = tmp->next;
 	}
 	return (max);
+}
+
+int	ft_min(int a, int b)
+{
+	if (a > b)
+		return (b);
+	else if (a < b)
+		return (a);
+	return (a);
+}
+
+int	ft_max(int a, int b)
+{
+	if (a < b)
+		return (b);
+	else if (a > b)
+		return (a);
+	return (a);
 }
 
 // int	ft_best_element(int high, int low, t_list *stack)

@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 13:26:53 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/02/27 15:59:40 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/01 11:00:30 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ typedef struct d_info
 	int	b_len;
 	int	a_middle;
 	int	b_middle;
+	int	a_dis;
+	int	b_dis;
+	int	a_index;
+	int	b_index;
+	int	min;
 }				t_info;
 
 typedef struct d_list
@@ -60,6 +65,7 @@ void	reverse_rotate(t_list **stack);
 
 int		ft_max_value(t_list *stack);
 int		ft_min_value(t_list *stack);
+int		ft_min(int a, int b);
 int		element_count(t_list *stack);
 
 void 	re_index(t_list *stack);
