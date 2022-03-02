@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:12:06 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/01 18:36:09 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/02 20:32:25 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,14 @@ void	rotate_decision(t_list **stack, int value, int dec)
 	if (dec == 1)
 	{
 		while ((*stack)->content != value)
-		{
-			printf("ra\n");
-			rotate_element(stack);
-		}
+			rotate_element(stack, "ra");
 	}
 	else
 	{
 		while ((*stack)->content != value)
 		{
 			printf("rra\n");
-			reverse_rotate(stack);
+			reverse_rotate(stack, "rra");
 		}
 	}
 }
@@ -159,28 +156,21 @@ void	rr_decision(t_list **stack_a, t_list **stack_b, t_info *info)
 	node_b = find_element(*stack_b, info->b_index);
 	while (*stack_a != node_a && *stack_b != node_b)
 	{
-		rotate_element(stack_a);
-		rotate_element(stack_b);
-		printf("rr\n");
+		rotate_element(stack_a, "");
+		rotate_element(stack_b, "");
+		ft_putstr("rr");
 	}
 	if (*stack_a != node_a)
 	{
 		while (*stack_a != node_a)
-		{
-			rotate_element(stack_a);
-			printf("ra\n");
-		}
+			rotate_element(stack_a, "ra");
 	}
 	if (*stack_b != node_b)
 	{
 		while (*stack_b != node_b)
-		{
-			rotate_element(stack_b);
-			printf("rb\n");
-		}
+			rotate_element(stack_b, "rb");
 	}
-	push_element(stack_b, stack_a);
-	printf("pb\n");
+	push_element(stack_b, stack_a, "pb");
 }
 
 void	rrr_decision(t_list **stack_a, t_list **stack_b, t_info *info)
@@ -194,28 +184,23 @@ void	rrr_decision(t_list **stack_a, t_list **stack_b, t_info *info)
 	node_b = find_element(*stack_b, info->b_index);
 	while (*stack_a != node_a && *stack_b != node_b)
 	{
-		reverse_rotate(stack_a);
-		reverse_rotate(stack_b);
-		printf("rr\n");
+														// we stop here
+		printf("");
+		reverse_rotate(stack_a, "");
+		reverse_rotate(stack_b, "");
+		ft_putstr("rrr");
 	}
 	if (*stack_a != node_a)
 	{
 		while (*stack_a != node_a)
-		{
-			reverse_rotate(stack_a);
-			printf("ra\n");
-		}
+			reverse_rotate(stack_a, "rra");
 	}
 	if (*stack_b != node_b)
 	{
 		while (*stack_b != node_b)
-		{
-			reverse_rotate(stack_b);
-			printf("rb\n");
-		}
+			reverse_rotate(stack_b, "rrb");
 	}
-	push_element(stack_b, stack_a);
-	printf("pb\n");
+	push_element(stack_b, stack_a, "pb");
 }
 
 void	double_rotate(t_list **stack_a, t_list **stack_b, t_info *info, int dec)
@@ -234,10 +219,10 @@ void	move_best_element(t_list **stack_a, t_list **stack_b, t_list *node_b, t_inf
 	node_a = find_element(*stack_a, node_b->n_index);
 	info->a_index = node_a->index;
 	info->b_index = node_b->index;
-	// if (node_a->index + 1 > info->a_middle && node_b->index + 1 > info->b_middle)
-	// 	return (double_rotate(stack_a, stack_b, info, 1));
-	// else if (node_a->index + 1 < info->a_middle && node_b->index + 1 < info->b_middle)
-	// 	return (double_rotate(stack_a, stack_b, info, 2));
+	if (node_a->index + 1 > info->a_middle && node_b->index + 1 > info->b_middle)
+		return (double_rotate(stack_a, stack_b, info, 2));
+	else if (node_a->index + 1 < info->a_middle && node_b->index + 1 < info->b_middle)
+		return (double_rotate(stack_a, stack_b, info, 1));
 	if (node_a->index + 1 <= info->a_middle)
 	{
 		rotate_decision(stack_a, node_a->content, 1);
@@ -247,17 +232,10 @@ void	move_best_element(t_list **stack_a, t_list **stack_b, t_list *node_b, t_inf
 		rotate_decision(stack_a, node_a->content, 2);
 	}
 	if (node_b->index + 1 <= info->b_middle)
-	{
 		rotate_decision(stack_b, node_b->content, 1);
-		push_element(stack_b, stack_a);
-		printf("pa\n");
-	}
 	else if (node_b->index + 1 > info->b_middle)
-	{
 		rotate_decision(stack_b, node_b->content, 2);
-		push_element(stack_b, stack_a);
-		printf("pa\n");
-	}
+	push_element(stack_b, stack_a, "pb");
 }
 
 void ft_sort(t_list **stack_a, t_list **stack_b)
@@ -285,15 +263,11 @@ void	sort_element(t_list **stack_a, t_list **stack_b, int n)
 	{
 		if ((*stack_a)->push == 0)
 		{
-			push_element(stack_a, stack_b);
+			push_element(stack_a, stack_b, "pa");
 			i--;
-			printf("pa\n");
 		}
 		else
-		{
-			rotate_element(stack_a);
-			printf("ra\n");
-		}
+			rotate_element(stack_a, "ra");
 	}
 	top_element(stack_a, n, min);
 	// print_stack(*stack_a);

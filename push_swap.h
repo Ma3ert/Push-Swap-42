@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 13:26:53 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/01 11:00:30 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/02 17:44:42 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,16 @@ int		ft_atoi(const char *str);
 int		ft_strcmp(const char *s1, const char *s2);
 int		arg_validation(char **av);
 int		is_num(char *str);
+void	ft_putstr(char *str);
 
 t_list	*pop_node(t_list **head);
 void	add_node(t_list **old_node, int content);
 void	add_first_node(t_list **first_node, int content);
 
-void	swap_element(t_list *first_element);
-void	push_element(t_list **from_list, t_list **to_list);
-void	rotate_element(t_list **stack);
-void	reverse_rotate(t_list **stack);
+void	swap_element(t_list *first_element, char *str);
+void	push_element(t_list **from_list, t_list **to_list, char *str);
+void	rotate_element(t_list **stack, char *str);
+void	reverse_rotate(t_list **stack, char *str);
 
 int		ft_max_value(t_list *stack);
 int		ft_min_value(t_list *stack);
