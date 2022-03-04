@@ -82,7 +82,7 @@ int	main(int ac, char **av)
 	while(i < ac)
 		add_node(&stack_a, ft_atoi(av[i++]));
 	sort_element(&stack_a, &stack_b, ac - 1);
-	print_stack(stack_a);
-	printf("-------------------------------------\n");
-	print_stack(stack_b);
+	// print_stack(stack_a);
+	// printf("-------------------------------------\n");
+	// print_stack(stack_b);
 }

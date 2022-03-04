@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 11:23:24 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/02 18:25:32 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:32:52 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_putstr(char *str)
 	i = 0;
 	while (str[i])
 		write(1, &str[i++], 1);
-	write(1, "\n", 1);
 }
 
 int	ft_atoi(const char *str)

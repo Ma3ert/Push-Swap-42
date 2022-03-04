@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:05:43 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/01 17:57:53 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:12:23 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,13 @@ void re_index(t_list *stack)
 
 t_list	*find_element(t_list *stack, int index)
 {
-	while (stack->index != index && stack)
+	while (stack != NULL)
+	{	
+		if (stack->index == index)
+			return (stack);
 		stack = stack->next;
-	return (stack);
+	}
+	return (NULL);
 }
 
 double	index_finder(t_list *stack, int value)

@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 13:26:53 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/02 17:44:42 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/04 13:11:16 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ typedef struct d_info
 	int	b_dis;
 	int	a_index;
 	int	b_index;
+	int	min_a;
+	int	max_a;
+	int	min_b;
+	int	max_b;
 	int	min;
 }				t_info;
 
@@ -67,6 +71,7 @@ void	reverse_rotate(t_list **stack, char *str);
 int		ft_max_value(t_list *stack);
 int		ft_min_value(t_list *stack);
 int		ft_min(int a, int b);
+int		ft_max(int a, int b);
 int		element_count(t_list *stack);
 
 void 	re_index(t_list *stack);
@@ -74,8 +79,8 @@ double	index_finder(t_list *stack, int value);
 t_list	*find_element(t_list *stack, int index);
 
 int		ft_lis(t_list *stack);
-void	rotate_decision(t_list **stack, int value, int dec);
-void	top_element(t_list **stack, double n, int value);
+void	rotate_decision(t_list **stack, int value, int dec, char *str);
+void	top_element(t_list **stack, int value);
 void	sort_element(t_list **stack_a, t_list **stack_b, int n);
 
 void	print_stack(t_list *stack);
