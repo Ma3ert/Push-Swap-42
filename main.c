@@ -73,14 +73,17 @@ int	main(int ac, char **av)
 
 	stack_b = NULL;
 	stack_a = NULL;
-	i = 1;
+	i = ac - 1;
 	if (arg_validation(av) == 0)
 	{
 		write(1, "unvalid argument", 16);
 		return (0);
 	}
-	while(i < ac)
-		add_node(&stack_a, ft_atoi(av[i++]));
+	while(i > 0)
+		add_node(&stack_a, ft_atoi(av[i--]));
+	// print_stack(stack_a);
+	// printf("-------------------------------------\n");
+	// print_stack(stack_b);
 	sort_element(&stack_a, &stack_b, ac - 1);
 	// print_stack(stack_a);
 	// printf("-------------------------------------\n");
