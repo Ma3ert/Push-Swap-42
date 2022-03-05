@@ -6,12 +6,14 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 13:26:53 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/04 13:11:16 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/05 20:49:07 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+# define BUFFER_SIZE 11
 
 #include <unistd.h>
 #include <stdio.h>
@@ -58,10 +60,12 @@ int		ft_strcmp(const char *s1, const char *s2);
 int		arg_validation(char **av);
 int		is_num(char *str);
 void	ft_putstr(char *str);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 t_list	*pop_node(t_list **head);
 void	add_node(t_list **old_node, int content);
 void	add_first_node(t_list **first_node, int content);
+void	print_stack(t_list *stack);
 
 void	swap_element(t_list *first_element, char *str);
 void	push_element(t_list **from_list, t_list **to_list, char *str);
@@ -79,10 +83,38 @@ double	index_finder(t_list *stack, int value);
 t_list	*find_element(t_list *stack, int index);
 
 int		ft_lis(t_list *stack);
+void	ft_lis_lenght(t_list *i, t_list *j);
+int		max_len(t_list *tmp);
+int		ft_markup(t_list *head);
 void	rotate_decision(t_list **stack, int value, int dec, char *str);
 void	top_element(t_list **stack, int value);
 void	sort_element(t_list **stack_a, t_list **stack_b, int n);
 
-void	print_stack(t_list *stack);
+t_list	*best_position(t_list *stack_a, int content);
+void	move_best_element(t_list **stack_a, t_list **stack_b, t_list *node_b, t_info *info);
+t_list	*best_element(t_list *stack_a, t_list *stack_b, t_info *info);
+int		element_count(t_list *stack);
+void	top_element(t_list **stack, int value);
+void	distance_calcul(t_list *node_a, t_list *node_b, t_info *info);
+t_list	*ft_distance(t_list *stack_b, t_info *info);
+
+void	rr_decision(t_list **stack_a, t_list **stack_b, t_info *info);
+void	rrr_decision(t_list **stack_a, t_list **stack_b, t_info *info);
+void	double_rotate(t_list **stack_a, t_list **stack_b, t_info *info, int dec);
+void 	ft_sort(t_list **stack_a, t_list **stack_b);
+
+void	apply_instruction(t_list **stack_a, t_list **stack_b, char *str);
+int		check_sort(t_list **stack_a);
+void	check_instruction(t_list **stack_a, t_list **stack_b);
+
+char	*ft_strdupi(const char *s1, int l);
+size_t	ft_strlen(const char *s);
+char	*get_next_line(int fd);
+char	*ft_strjoin(char *s1, char *s2);
+char	*get_new_line(char *buffer);
+char	*get_rest(char *buffer);
+char	*get_new_buffer(char *rest, char *buffer);
+char	*ft_strchr(const char *s, int c);
+char	*get_buffer(char *buffer, int fd, char *rest, int nbyte);
 
 #endif
