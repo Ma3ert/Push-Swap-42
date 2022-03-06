@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 19:18:51 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/05 20:16:25 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/06 15:01:11 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,28 +35,44 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 void	apply_instruction(t_list **stack_a, t_list **stack_b, char *str)
 {
-	if (ft_strncmp(str, "sa\n", 3))
+	if (!ft_strncmp(str, "sa\n", 3))
+	{
 		swap_element(*stack_a, "");
-	else if (ft_strncmp(str, "sb\n", 3))
+	}
+	else if (!ft_strncmp(str, "sb\n", 3))
+	{
 		swap_element(*stack_b, "");
-	else if (ft_strncmp(str, "ra\n", 3))
+	}
+	else if (!ft_strncmp(str, "ra\n", 3))
+	{	
 		rotate_element(stack_a, "");
-	else if (ft_strncmp(str, "rb\n", 3))
+	}
+	else if (!ft_strncmp(str, "rb\n", 3))
+	{	
 		rotate_element(stack_b, "");	
-	else if (ft_strncmp(str, "pa\n", 3))
+	}
+	else if (!ft_strncmp(str, "pa\n", 3))
+	{	
 		push_element(stack_b, stack_a, "");
-	else if (ft_strncmp(str, "pb\n", 3))
+	}
+	else if (!ft_strncmp(str, "pb\n", 3))
+	{
 		push_element(stack_a, stack_b, "");
-	else if (ft_strncmp(str, "rra\n", 3))
+	}
+	else if (!ft_strncmp(str, "rra\n", 3))
+	{
 		reverse_rotate(stack_a, "");
-	else if (ft_strncmp(str, "rrb\n", 3))
+	}
+	else if (!ft_strncmp(str, "rrb\n", 3))
+	{
 		reverse_rotate(stack_b, "");	
-	else if (ft_strncmp(str, "rrr\n", 3))
+	}
+	else if (!ft_strncmp(str, "rrr\n", 3))
 	{
 		reverse_rotate(stack_b, "");
 		reverse_rotate(stack_a, "");
 	}
-	else if (ft_strncmp(str, "rr\n", 3))
+	else if (!ft_strncmp(str, "rr\n", 3))
 	{
 		rotate_element(stack_b, "");
 		rotate_element(stack_a, "");
@@ -65,8 +81,9 @@ void	apply_instruction(t_list **stack_a, t_list **stack_b, char *str)
 
 int	check_sort(t_list **stack_a)
 {
-	while (*stack_a)
+	while (*stack_a && ((*stack_a)->next))
 	{
+		// printf("hoho\n");
 		if ((*stack_a)->content < (*stack_a)->next->content)
 			*stack_a = (*stack_a)->next;
 		else
@@ -82,10 +99,12 @@ void	check_instruction(t_list **stack_a, t_list **stack_b)
 	str = get_next_line(0);
 	while (str)
 	{
-		apply_instruction(stack_b, stack_a, str);
+		apply_instruction(stack_a, stack_b, str);
 		str = get_next_line(0);
+		if (str[0] == '\n')
+			break;
 	}
-	if (check_sort(stack_a) == 1 && !stack_b)
+	if (check_sort(stack_a) == 1 && !(*stack_b))
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
