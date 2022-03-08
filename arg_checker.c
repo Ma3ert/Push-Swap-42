@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:45:50 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/05 20:24:26 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/07 14:48:22 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ int	arg_validation(char **av)
 				if (j != i && (ft_strcmp(av[j], av[i]) == 0))
 					return (0);
 			}
-			else 
+			else
 				return (0);
 			j++;
 		}
 		j = 1;
-		i++;		
+		i++;
 	}
 	return (1);
 }

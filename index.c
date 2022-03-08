@@ -6,13 +6,13 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:05:43 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/03 15:12:23 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/08 15:22:06 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void re_index(t_list *stack)
+void	re_index(t_list *stack)
 {
 	int	i;
 

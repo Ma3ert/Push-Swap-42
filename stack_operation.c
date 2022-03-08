@@ -6,15 +6,30 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 20:35:39 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/05 20:36:10 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/08 15:25:37 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+int	element_count(t_list *stack)
+{
+	int	n;
+
+	n = 0;
+	while (stack != NULL)
+	{
+		stack = stack->next;
+		n++;
+	}
+	return (n);
+}
+
 void	add_first_node(t_list **first_node, int content)
 {
 	(*first_node) = malloc(sizeof(t_list));
+	if (!(*first_node))
+		free_stack(*first_node);
 	(*first_node)->content = content;
 	(*first_node)->len = 1;
 	(*first_node)->distance = 0;
@@ -25,12 +40,12 @@ void	add_first_node(t_list **first_node, int content)
 
 t_list	*pop_node(t_list **head)
 {
-	t_list *node;
+	t_list	*node;
 
 	node = *head;
 	*head = node->next;
 	node->next = NULL;
-	return (node); 
+	return (node);
 }
 
 void	add_node(t_list **first_node, int content)
@@ -42,6 +57,8 @@ void	add_node(t_list **first_node, int content)
 	{
 		tmp = *first_node;
 		new_node = malloc(sizeof(t_list));
+		if (!new_node)
+			free_stack(*first_node);
 		new_node->content = content;
 		new_node->p_index = -1;
 		new_node->n_index = -1;
@@ -59,8 +76,7 @@ void	print_stack(t_list *stack)
 {
 	while (stack)
 	{
-		// printf("stack: %d[%d]\n", stack->content, stack->index);
-		printf("stack: %d [%d] -> %d  (%d)  [%d]\n", stack->content, stack->index, stack->push, stack->len, stack->p_index);
+		printf("stack: %d[%d]\n", stack->content, stack->index);
 		stack = stack->next;
 	}
 }

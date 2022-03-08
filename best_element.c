@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 20:42:01 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/05 20:47:14 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/07 14:57:29 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	rotate_decision(t_list **stack, int value, int dec, char *s)
 
 t_list	*best_position(t_list *stack_a, int content)
 {
-	t_list *head;
+	t_list	*head;
 
 	head = stack_a;
 	while (stack_a && stack_a->next)
@@ -37,31 +37,41 @@ t_list	*best_position(t_list *stack_a, int content)
 			return (stack_a->next);
 		stack_a = stack_a->next;
 	}
-	if (stack_a->content < content && head->content >content)
-		return(head);
+	if (stack_a->content < content && head->content > content)
+		return (head);
 	return (NULL);
 }
 
-void	move_best_element(t_list **stack_a, t_list **stack_b, t_list *node_b, t_info *info)
+void	move_best_element(t_list **a, t_list **b, t_list *node_b, t_info *info)
 {
 	t_list	*node_a;
 
-	node_a = find_element(*stack_a, node_b->n_index);
+	node_a = find_element(*a, node_b->n_index);
 	info->a_index = node_a->index;
 	info->b_index = node_b->index;
-	if (node_a->index + 1 > info->a_middle && node_b->index + 1 > info->b_middle)
-		return (double_rotate(stack_a, stack_b, info, 2));
-	else if (node_a->index + 1 < info->a_middle && node_b->index + 1 < info->b_middle)
-		return (double_rotate(stack_a, stack_b, info, 1));
-	if (node_a->index + 1 <= info->a_middle)
-		rotate_decision(stack_a, node_a->content, 1, "ra\n");
-	else if (node_a->index + 1 > info->a_middle)
-		rotate_decision(stack_a, node_a->content, 2, "rra\n");
-	if (node_b->index + 1 <= info->b_middle)
-		rotate_decision(stack_b, node_b->content, 1, "rb\n");
-	else if (node_b->index + 1 > info->b_middle)
-		rotate_decision(stack_b, node_b->content, 2, "rrb\n");
-	push_element(stack_b, stack_a, "pa\n");
+	if (node_a->index + 1 > info->a_mid && node_b->index + 1 > info->b_mid)
+		return (double_rotate(a, b, info, 2));
+	else if (node_a->index + 1 < info->a_mid && node_b->index + 1 < info->b_mid)
+		return (double_rotate(a, b, info, 1));
+	if (node_a->index + 1 <= info->a_mid)
+		rotate_decision(a, node_a->content, 1, "ra\n");
+	else if (node_a->index + 1 > info->a_mid)
+		rotate_decision(a, node_a->content, 2, "rra\n");
+	if (node_b->index + 1 <= info->b_mid)
+		rotate_decision(b, node_b->content, 1, "rb\n");
+	else if (node_b->index + 1 > info->b_mid)
+		rotate_decision(b, node_b->content, 2, "rrb\n");
+	push_element(b, a, "pa\n");
+}
+
+void	info_initi(t_list *stack_a, t_list *stack_b, t_info *info)
+{
+	info->a_len = element_count(stack_a);
+	info->b_len = element_count(stack_b);
+	info->min_a = ft_min_value(stack_a);
+	info->max_a = ft_max_value(stack_a);
+	info->min_b = ft_min_value(stack_b);
+	info->max_b = ft_max_value(stack_b);
 }
 
 t_list	*best_element(t_list *stack_a, t_list *stack_b, t_info *info)
@@ -71,12 +81,7 @@ t_list	*best_element(t_list *stack_a, t_list *stack_b, t_info *info)
 	int		index;
 
 	head = stack_b;
-	info->a_len = element_count(stack_a);
-	info->b_len = element_count(stack_b);
-	info->min_a = ft_min_value(stack_a);
-	info->max_a = ft_max_value(stack_a);
-	info->min_b = ft_min_value(stack_b);
-	info->max_b = ft_max_value(stack_b);
+	info_initi(stack_a, stack_b, info);
 	while (stack_b)
 	{
 		node = best_position(stack_a, stack_b->content);
@@ -92,6 +97,5 @@ t_list	*best_element(t_list *stack_a, t_list *stack_b, t_info *info)
 	}
 	stack_b = head;
 	node = ft_distance(stack_b, info);
-	// printf("node_b:%d ->[%d] (%d)\n", node->content, node->n_index, node->distance);
 	return (node);
 }

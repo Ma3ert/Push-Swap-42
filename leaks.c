@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   leaks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/04 13:30:03 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/08 12:19:45 by yait-iaz         ###   ########.fr       */
+/*   Created: 2022/03/08 15:22:24 by yait-iaz          #+#    #+#             */
+/*   Updated: 2022/03/08 15:22:37 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate_element(t_list **stack, char *str)
+void	free_stack(t_list *stack)
 {
-	t_list	*tmp1;
-	t_list	*tmp2;
+	t_list	*tmp;
 
-	if (element_count(*stack) < 2)
-		return ;
-	tmp1 = *stack;
-	*stack = tmp1->next;
-	tmp2 = tmp1->next;
-	while (tmp2->next != NULL)
-		tmp2 = tmp2->next;
-	tmp2->next = tmp1;
-	tmp1->next = NULL;
-	ft_putstr(str);
+	tmp = stack;
+	while (stack)
+	{
+		stack = tmp->next;
+		free(tmp);
+		tmp = stack;
+	}
 }

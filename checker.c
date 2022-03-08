@@ -6,68 +6,15 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 19:18:51 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/06 15:01:11 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/08 18:12:22 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	double_instruction(t_list **stack_a, t_list **stack_b, char *str)
 {
-	size_t			i;
-	unsigned char	*str1;
-	unsigned char	*str2;
-
-	i = 0;
-	str1 = (unsigned char *)s1;
-	str2 = (unsigned char *)s2;
-	while ((str1[i] != '\0' || str2[i] != '\0') && n > 0)
-	{
-		if (str1[i] != str2[i])
-		{
-			return (str1[i] - str2[i]);
-		}
-		i++;
-		n--;
-	}
-	return (0);
-}
-
-void	apply_instruction(t_list **stack_a, t_list **stack_b, char *str)
-{
-	if (!ft_strncmp(str, "sa\n", 3))
-	{
-		swap_element(*stack_a, "");
-	}
-	else if (!ft_strncmp(str, "sb\n", 3))
-	{
-		swap_element(*stack_b, "");
-	}
-	else if (!ft_strncmp(str, "ra\n", 3))
-	{	
-		rotate_element(stack_a, "");
-	}
-	else if (!ft_strncmp(str, "rb\n", 3))
-	{	
-		rotate_element(stack_b, "");	
-	}
-	else if (!ft_strncmp(str, "pa\n", 3))
-	{	
-		push_element(stack_b, stack_a, "");
-	}
-	else if (!ft_strncmp(str, "pb\n", 3))
-	{
-		push_element(stack_a, stack_b, "");
-	}
-	else if (!ft_strncmp(str, "rra\n", 3))
-	{
-		reverse_rotate(stack_a, "");
-	}
-	else if (!ft_strncmp(str, "rrb\n", 3))
-	{
-		reverse_rotate(stack_b, "");	
-	}
-	else if (!ft_strncmp(str, "rrr\n", 3))
+	if (!ft_strncmp(str, "rrr\n", 3))
 	{
 		reverse_rotate(stack_b, "");
 		reverse_rotate(stack_a, "");
@@ -77,15 +24,41 @@ void	apply_instruction(t_list **stack_a, t_list **stack_b, char *str)
 		rotate_element(stack_b, "");
 		rotate_element(stack_a, "");
 	}
+	else if (!ft_strncmp(str, "ss\n", 3))
+	{
+		swap_element(*stack_b, "");
+		swap_element(*stack_a, "");
+	}
 }
 
-int	check_sort(t_list **stack_a)
+void	apply_instruction(t_list **stack_a, t_list **stack_b, char *str)
 {
-	while (*stack_a && ((*stack_a)->next))
+	if (!ft_strncmp(str, "sa\n", 3))
+		swap_element(*stack_a, "");
+	else if (!ft_strncmp(str, "sb\n", 3))
+		swap_element(*stack_b, "");
+	else if (!ft_strncmp(str, "ra\n", 3))
+		rotate_element(stack_a, "");
+	else if (!ft_strncmp(str, "rb\n", 3))
+		rotate_element(stack_b, "");
+	else if (!ft_strncmp(str, "pa\n", 3))
+		push_element(stack_b, stack_a, "");
+	else if (!ft_strncmp(str, "pb\n", 3))
+		push_element(stack_a, stack_b, "");
+	else if (!ft_strncmp(str, "rra\n", 3))
+		reverse_rotate(stack_a, "");
+	else if (!ft_strncmp(str, "rrb\n", 3))
+		reverse_rotate(stack_b, "");
+	else
+		double_instruction(stack_a, stack_b, str);
+}
+
+int	check_sort(t_list *stack_a)
+{
+	while (stack_a && stack_a->next)
 	{
-		// printf("hoho\n");
-		if ((*stack_a)->content < (*stack_a)->next->content)
-			*stack_a = (*stack_a)->next;
+		if (stack_a->content < stack_a->next->content)
+			stack_a = stack_a->next;
 		else
 			return (0);
 	}
@@ -97,17 +70,23 @@ void	check_instruction(t_list **stack_a, t_list **stack_b)
 	char	*str;
 
 	str = get_next_line(0);
-	while (str)
+	printf("stack_a: %p\n", *stack_a);
+	printf("stack_b: %p\n", *stack_b);
+	while (str[0] != '\n')
 	{
 		apply_instruction(stack_a, stack_b, str);
+		printf("stack_a: %p\n", *stack_a);
+		printf("stack_b: %p\n", *stack_b);
+		free(str);
 		str = get_next_line(0);
-		if (str[0] == '\n')
-			break;
 	}
-	if (check_sort(stack_a) == 1 && !(*stack_b))
+	free(str);
+	if (check_sort(*stack_a) == 1 && !(*stack_b))
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
+	printf("stack_a: %p\n", *stack_a);
+	printf("stack_b: %p\n", *stack_b);
 }
 
 int	main(int ac, char **av)
@@ -127,4 +106,7 @@ int	main(int ac, char **av)
 	while (i > 0)
 		add_node(&stack_a, ft_atoi(av[i--]));
 	check_instruction(&stack_a, &stack_b);
+	printf("stack_a: %d\n", stack_a->content);
+	free_stack(stack_a);
+	free_stack(stack_b);
 }

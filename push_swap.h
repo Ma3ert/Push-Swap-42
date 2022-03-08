@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 13:26:53 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/05 20:49:07 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/08 17:39:05 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 # define BUFFER_SIZE 11
 
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
 
 typedef struct d_pivot
 {
@@ -30,8 +30,8 @@ typedef struct d_info
 {
 	int	a_len;
 	int	b_len;
-	int	a_middle;
-	int	b_middle;
+	int	a_mid;
+	int	b_mid;
 	int	a_dis;
 	int	b_dis;
 	int	a_index;
@@ -66,6 +66,7 @@ t_list	*pop_node(t_list **head);
 void	add_node(t_list **old_node, int content);
 void	add_first_node(t_list **first_node, int content);
 void	print_stack(t_list *stack);
+void	free_stack(t_list *stack);
 
 void	swap_element(t_list *first_element, char *str);
 void	push_element(t_list **from_list, t_list **to_list, char *str);
@@ -78,7 +79,7 @@ int		ft_min(int a, int b);
 int		ft_max(int a, int b);
 int		element_count(t_list *stack);
 
-void 	re_index(t_list *stack);
+void	re_index(t_list *stack);
 double	index_finder(t_list *stack, int value);
 t_list	*find_element(t_list *stack, int index);
 
@@ -86,12 +87,13 @@ int		ft_lis(t_list *stack);
 void	ft_lis_lenght(t_list *i, t_list *j);
 int		max_len(t_list *tmp);
 int		ft_markup(t_list *head);
+void	push_lis(t_list **stack_a, t_list **stack_b, int i);
 void	rotate_decision(t_list **stack, int value, int dec, char *str);
 void	top_element(t_list **stack, int value);
 void	sort_element(t_list **stack_a, t_list **stack_b, int n);
 
 t_list	*best_position(t_list *stack_a, int content);
-void	move_best_element(t_list **stack_a, t_list **stack_b, t_list *node_b, t_info *info);
+void	move_best_element(t_list **a, t_list **b, t_list *node_b, t_info *info);
 t_list	*best_element(t_list *stack_a, t_list *stack_b, t_info *info);
 int		element_count(t_list *stack);
 void	top_element(t_list **stack, int value);
@@ -100,11 +102,12 @@ t_list	*ft_distance(t_list *stack_b, t_info *info);
 
 void	rr_decision(t_list **stack_a, t_list **stack_b, t_info *info);
 void	rrr_decision(t_list **stack_a, t_list **stack_b, t_info *info);
-void	double_rotate(t_list **stack_a, t_list **stack_b, t_info *info, int dec);
-void 	ft_sort(t_list **stack_a, t_list **stack_b);
+void	double_rotate(t_list **a, t_list **b, t_info *info, int dec);
+void	ft_sort(t_list **stack_a, t_list **stack_b);
 
 void	apply_instruction(t_list **stack_a, t_list **stack_b, char *str);
-int		check_sort(t_list **stack_a);
+void	double_instruction(t_list **stack_a, t_list **stack_b, char *str);
+int		check_sort(t_list *stack_a);
 void	check_instruction(t_list **stack_a, t_list **stack_b);
 
 char	*ft_strdupi(const char *s1, int l);

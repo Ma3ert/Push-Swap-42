@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 12:45:02 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/05 19:32:24 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/07 15:08:50 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,26 @@ char	*ft_strchr(const char *s, int c)
 	}
 	if (s[i] == ch)
 		return ((char *)&s[i]);
+	return (0);
+}
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t			i;
+	unsigned char	*str1;
+	unsigned char	*str2;
+
+	i = 0;
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	while ((str1[i] != '\0' || str2[i] != '\0') && n > 0)
+	{
+		if (str1[i] != str2[i])
+		{
+			return (str1[i] - str2[i]);
+		}
+		i++;
+		n--;
+	}
 	return (0);
 }

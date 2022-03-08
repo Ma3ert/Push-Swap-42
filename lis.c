@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 11:08:27 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/01 16:20:33 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/07 15:15:39 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ int	ft_markup(t_list *head)
 
 int	ft_lis(t_list *head)
 {
-	t_list *tmp_j;
-	t_list *tmp_i;
+	t_list	*tmp_j;
+	t_list	*tmp_i;
 
 	tmp_j = head;
-	tmp_i = head->next; 
+	tmp_i = head->next;
 	while (tmp_i != NULL)
 	{
 		while (tmp_j != tmp_i)
@@ -76,4 +76,18 @@ int	ft_lis(t_list *head)
 		tmp_i = tmp_i->next;
 	}
 	return (ft_markup(head));
+}
+
+void	push_lis(t_list **stack_a, t_list **stack_b, int i)
+{
+	while (i != 0)
+	{
+		if ((*stack_a)->push == 0)
+		{
+			push_element(stack_a, stack_b, "pb\n");
+			i--;
+		}
+		else
+			rotate_element(stack_a, "ra\n");
+	}
 }
