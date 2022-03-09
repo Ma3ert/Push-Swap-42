@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 13:26:53 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/08 17:39:05 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/09 13:40:03 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define PUSH_SWAP_H
 
 # define BUFFER_SIZE 11
+
+# define MIN_INT "-2147483648"
+# define MAX_INT "2147483647"
 
 # include <unistd.h>
 # include <stdio.h>

@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 19:18:51 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/08 18:12:22 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/09 20:00:31 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,9 @@ void	check_instruction(t_list **stack_a, t_list **stack_b)
 	char	*str;
 
 	str = get_next_line(0);
-	printf("stack_a: %p\n", *stack_a);
-	printf("stack_b: %p\n", *stack_b);
 	while (str[0] != '\n')
 	{
 		apply_instruction(stack_a, stack_b, str);
-		printf("stack_a: %p\n", *stack_a);
-		printf("stack_b: %p\n", *stack_b);
 		free(str);
 		str = get_next_line(0);
 	}
@@ -85,8 +81,6 @@ void	check_instruction(t_list **stack_a, t_list **stack_b)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
-	printf("stack_a: %p\n", *stack_a);
-	printf("stack_b: %p\n", *stack_b);
 }
 
 int	main(int ac, char **av)
@@ -106,7 +100,6 @@ int	main(int ac, char **av)
 	while (i > 0)
 		add_node(&stack_a, ft_atoi(av[i--]));
 	check_instruction(&stack_a, &stack_b);
-	printf("stack_a: %d\n", stack_a->content);
 	free_stack(stack_a);
 	free_stack(stack_b);
 }
