@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:12:06 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/09 12:59:40 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/10 12:20:44 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,10 @@ void	rr_decision(t_list **stack_a, t_list **stack_b, t_info *info)
 		rotate_element(stack_b, "");
 		ft_putstr("rr\n");
 	}
-	if ((*stack_a)->content != node_a->content)
-	{
-		while ((*stack_a)->content != node_a->content)
-			rotate_element(stack_a, "ra\n");
-	}
-	if ((*stack_b)->content != node_b->content)
-	{
-		while ((*stack_b)->content != node_b->content)
-			rotate_element(stack_b, "rb\n");
-	}
+	while ((*stack_a)->content != node_a->content)
+		rotate_element(stack_a, "ra\n");
+	while ((*stack_b)->content != node_b->content)
+		rotate_element(stack_b, "rb\n");
 	push_element(stack_b, stack_a, "pa\n");
 }
 
@@ -57,16 +51,10 @@ void	rrr_decision(t_list **stack_a, t_list **stack_b, t_info *info)
 		reverse_rotate(stack_b, "");
 		ft_putstr("rrr\n");
 	}
-	if ((*stack_a)->content != node_a->content)
-	{
-		while ((*stack_a)->content != node_a->content)
-			reverse_rotate(stack_a, "rra\n");
-	}
-	if ((*stack_b)->content != node_b->content)
-	{
-		while ((*stack_b)->content != node_b->content)
-			reverse_rotate(stack_b, "rrb\n");
-	}
+	while ((*stack_a)->content != node_a->content)
+		reverse_rotate(stack_a, "rra\n");
+	while ((*stack_b)->content != node_b->content)
+		reverse_rotate(stack_b, "rrb\n");
 	push_element(stack_b, stack_a, "pa\n");
 }
 

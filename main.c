@@ -6,11 +6,39 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 13:29:56 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/09 16:06:22 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/10 14:57:57 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	sort_three(t_list **stack)
+{
+	t_list	*max;
+	t_list	*min;
+
+	re_index(*stack);
+	max = find_element(*stack, index_finder(*stack, ft_max_value(*stack)));
+	min = find_element(*stack, index_finder(*stack, ft_min_value(*stack)));
+	if (max->index == 2 && min->index == 0)
+		return ;
+	else if (max->index == 0 && min->index != 2)
+		rotate_element(stack, "ra\n");
+	else if (max->index != 0 && min->index == 2)
+		reverse_rotate(stack, "rra\n");
+	else if (max->index == 2 && min->index != 0)
+		swap_element(*stack, "sa\n");
+	else if (max->index == 0 && min->index == 2)
+	{
+		rotate_element(stack, "ra\n");
+		swap_element(*stack, "sa\n");
+	}
+	else if (max->index != 0 && min->index == 0)
+	{
+		reverse_rotate(stack, "rra\n");
+		swap_element(*stack, "sa\n");
+	}
+}
 
 int	main(int ac, char **av)
 {
@@ -30,9 +58,11 @@ int	main(int ac, char **av)
 		}
 		while (i > 0)
 			add_node(&stack_a, ft_atoi(av[i--]));
-		sort_element(&stack_a, &stack_b, ac - 1);
-		print_stack(stack_a);
-		print_stack(stack_b);
+		if (ac == 4)
+			sort_three(&stack_a);
+		else
+			sort_element(&stack_a, &stack_b, ac - 1);
 		free_stack(stack_a);
+		free_stack(stack_b);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 19:18:51 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/09 20:00:31 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/10 20:25:37 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ void	double_instruction(t_list **stack_a, t_list **stack_b, char *str)
 	{
 		swap_element(*stack_b, "");
 		swap_element(*stack_a, "");
+	}
+	else
+	{
+		write(2, "Error!\n", 8);
+		exit(1);
 	}
 }
 
@@ -70,7 +75,7 @@ void	check_instruction(t_list **stack_a, t_list **stack_b)
 	char	*str;
 
 	str = get_next_line(0);
-	while (str[0] != '\n')
+	while (str != NULL)
 	{
 		apply_instruction(stack_a, stack_b, str);
 		free(str);
