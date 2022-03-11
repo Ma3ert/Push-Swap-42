@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 13:29:56 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/10 14:57:57 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/11 17:52:07 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	main(int ac, char **av)
 	{
 		stack_b = NULL;
 		stack_a = NULL;
+		av = adjust_arg(av, &ac);
 		i = ac - 1;
 		if (arg_validation(av) == 0)
 		{

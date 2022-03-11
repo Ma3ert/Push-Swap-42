@@ -6,16 +6,16 @@
 #    By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/04 13:30:14 by yait-iaz          #+#    #+#              #
-#    Updated: 2022/03/09 14:44:42 by yait-iaz         ###   ########.fr        #
+#    Updated: 2022/03/11 15:46:07 by yait-iaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = swap.c push.c reverse_rotate.c rotate.c utils.c main.c sorting.c \
 		arg_checker.c value.c index.c lis.c stack_operation.c distance.c \
-		best_element.c leaks.c get_next_line_utils.c
+		best_element.c leaks.c get_next_line_utils.c ft_split.c
 SRC_B = checker.c get_next_line.c get_next_line_utils.c arg_checker.c \
 		push.c reverse_rotate.c rotate.c utils.c swap.c stack_operation.c \
-		leaks.c
+		leaks.c ft_split.c
 OBJ = $(SRC:.c=.o)
 OBJ_B = $(SRC_B:.c=.o)
 NAME = push_swap
