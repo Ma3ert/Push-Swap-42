@@ -6,7 +6,7 @@
 #    By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/04 13:30:14 by yait-iaz          #+#    #+#              #
-#    Updated: 2022/03/13 20:16:48 by yait-iaz         ###   ########.fr        #
+#    Updated: 2022/03/14 15:24:31 by yait-iaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,14 +30,14 @@ all: $(NAME)
 
 bonus: $(BONUS)
 
-$(BONUS): $(OBJ_B)
+$(BONUS): $(OBJ_B) $(HEADER)
 	$(CC) $(FLAGS) $(OBJ_B) -o $(BONUS)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(HEADER)
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
 %.o : %.c
-	$(CC) $(FLAGS) -c $< 
+	$(CC) $(FLAGS) -c $<
 
 clean:
 	rm -f $(OBJ) $(OBJ_B)

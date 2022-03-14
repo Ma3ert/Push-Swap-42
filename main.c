@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 13:29:56 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/14 13:53:27 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/14 16:03:11 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	sort_five_less(t_list **stack_a, t_list **stack_b, int n)
 	i = 0;
 	if (n == 3)
 		sort_three(stack_a);
+	else if (n == 2)
+		top_element(stack_a, ft_min_value(*stack_a));
 	else
 	{
 		while (element_count(*stack_a) > 3)
@@ -79,14 +81,14 @@ int	main(int ac, char **av)
 		i = ac - 1;
 		if (arg_validation(arg) == 0)
 		{
-			free(arg);
+			free_t(arg);
 			write(2, "Error!\n", 7);
 			return (0);
 		}
 		while (i > 0)
 			add_node(&stack_a, ft_atoi(arg[i--]));
 		sort_element(&stack_a, &stack_b, ac - 1);
-		free(arg);
+		free_t(arg);
 		free_stack(stack_a);
 		free_stack(stack_b);
 	}

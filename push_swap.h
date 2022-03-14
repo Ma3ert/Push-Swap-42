@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 13:26:53 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/14 13:47:39 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/14 15:12:27 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_putstr(char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	**ft_split(char const *s, char c);
 int		count_d(const char *s, char c);
-void	free_t(char **str, int count);
+void	free_t(char **str);
 
 t_list	*pop_node(t_list **head);
 void	add_node(t_list **old_node, int content);

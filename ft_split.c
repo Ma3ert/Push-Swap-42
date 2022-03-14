@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 11:42:34 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/12 13:10:07 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/14 15:11:32 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,15 @@ static int	l_i(const char *s, char c, int i, int *l)
 	return (i);
 }
 
-void	free_t(char **str, int count)
+void	free_t(char **str)
 {
-	while (str[count])
+	int	i;
+
+	i = 0;
+	while (str[i])
 	{
-		free(str[count]);
-		count--;
+		free(str[i]);
+		i++;
 	}
 	free(str);
 	str = NULL ;
@@ -82,7 +85,7 @@ char	**ft_split(char const *s, char c)
 		i = l_i(s, c, i, &l);
 		str[j] = ft_strdupi(&s[i - l], l);
 		if (!str[j])
-			free_t(str, count);
+			free_t(str);
 		j++;
 	}
 	str[j] = 0;

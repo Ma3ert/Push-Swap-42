@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:45:50 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/09 18:03:35 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/14 17:17:19 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_num(char *str)
 	int	i;
 
 	i = 0;
-	if (str[i] == '-')
+	if ((str[i] == '-' || str[i] == '+' ) && ft_strlen(str) > 1)
 		i++;
 	while (str[i])
 	{
