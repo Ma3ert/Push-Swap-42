@@ -6,7 +6,7 @@
 /*   By: yait-iaz <yait-iaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:12:06 by yait-iaz          #+#    #+#             */
-/*   Updated: 2022/03/10 12:20:44 by yait-iaz         ###   ########.fr       */
+/*   Updated: 2022/03/14 13:46:15 by yait-iaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,17 +82,22 @@ void	sort_element(t_list **stack_a, t_list **stack_b, int n)
 	int		min;
 
 	i = 0;
-	min = ft_min_value(*stack_a);
-	re_index(*stack_a);
-	i = n - ft_lis(*stack_a);
-	push_lis(stack_a, stack_b, i);
-	re_index(*stack_a);
-	re_index(*stack_b);
-	while (*stack_b)
-	{
-		ft_sort(stack_a, stack_b);
+	if (n <= 5)
+		sort_five_less(stack_a, stack_b, n);
+	else
+	{	
+		min = ft_min_value(*stack_a);
+		re_index(*stack_a);
+		i = n - ft_lis(*stack_a);
+		push_lis(stack_a, stack_b, i);
 		re_index(*stack_a);
 		re_index(*stack_b);
+		while (*stack_b)
+		{
+			ft_sort(stack_a, stack_b);
+			re_index(*stack_a);
+			re_index(*stack_b);
+		}
+		top_element(stack_a, min);
 	}
-	top_element(stack_a, min);
 }
